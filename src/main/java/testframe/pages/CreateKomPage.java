@@ -1,5 +1,6 @@
 package testframe.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
 import org.openqa.selenium.WebElement;
@@ -57,17 +58,18 @@ public class CreateKomPage extends BasePage {
     public CreateKomPage() {
         pageManager = PageMan.getPageMan();
     }
-
+    @Step("Создание новой коммандировки")
     public CreateKomPage newCom(){
         waitClickability(createCom).click();
         return this;
     }
-
+    @Step("Заполнение подразделения")
     public CreateKomPage podrazdelenie() {
         podrazdelenie.click();
         waitClickability(viborPodrazrel).click();
         return this;
     }
+    @Step("Заполнение организации")
     public CreateKomPage organisations() {
         waitVisibilityOfElement(organisations).click();
         waitVisibilityOfElement(poiskOrg).click();
@@ -75,17 +77,19 @@ public class CreateKomPage extends BasePage {
 
         return this;
     }
-
+    @Step("заполнение города отбытия")
     public CreateKomPage departureCity(String city){
         departureCity.clear();
         departureCity.sendKeys(city);
        return this;
     }
+    @Step("Заполонение города прибытия")
     public CreateKomPage arrivalCity(String city){
 
         arrivalCity.sendKeys(city);
         return this;
     }
+    @Step("Заполнение дат")
     public CreateKomPage date(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate date = LocalDate.now();
@@ -97,12 +101,15 @@ public class CreateKomPage extends BasePage {
 
         return this;
     }
+    @Step("Отметка Ч/Б 'Заказ билетов'")
     public CreateKomPage checkbox(){
         checkbox.click();
         return this;
     }
+    @Step("Проверка на заполненность, при нажатии Сохранить")
     public CreateKomPage saveBut(){
         button.click();
+        waitVisibilityOfElement(message);
         Assertions.assertEquals("Список командируемых сотрудников не может быть пустым",message.getText(),"Сообщение " +
                 "'Список командируемых сотрудников не может быть пустым' не появилось");
         return this;
