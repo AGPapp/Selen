@@ -1,13 +1,8 @@
 package testframe.pages;
-
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import testframe.managers.PageMan;
-
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -58,18 +53,19 @@ public class CreateKomPage extends BasePage {
     public CreateKomPage() {
         pageManager = PageMan.getPageMan();
     }
-    @Step("Создание новой коммандировки")
+  //  @Step("Создание ново   й коммандировки")
+
     public CreateKomPage newCom(){
         waitClickability(createCom).click();
         return this;
     }
-    @Step("Заполнение подразделения")
+  //  @Step("Заполнение подразделения")
     public CreateKomPage podrazdelenie() {
         podrazdelenie.click();
         waitClickability(viborPodrazrel).click();
         return this;
     }
-    @Step("Заполнение организации")
+   // @Step("Заполнение организации")
     public CreateKomPage organisations() {
         waitVisibilityOfElement(organisations).click();
         waitVisibilityOfElement(poiskOrg).click();
@@ -77,19 +73,19 @@ public class CreateKomPage extends BasePage {
 
         return this;
     }
-    @Step("заполнение города отбытия")
+   // @Step("заполнение города отбытия")
     public CreateKomPage departureCity(String city){
         departureCity.clear();
         departureCity.sendKeys(city);
        return this;
     }
-    @Step("Заполонение города прибытия")
+  //  @Step("Заполонение города прибытия")
     public CreateKomPage arrivalCity(String city){
 
         arrivalCity.sendKeys(city);
         return this;
     }
-    @Step("Заполнение дат")
+  //  @Step("Заполнение дат")
     public CreateKomPage date(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate date = LocalDate.now();
@@ -101,14 +97,20 @@ public class CreateKomPage extends BasePage {
 
         return this;
     }
-    @Step("Отметка Ч/Б 'Заказ билетов'")
+   // @Step("Отметка Ч/Б 'Заказ билетов'")
     public CreateKomPage checkbox(){
         checkbox.click();
         return this;
     }
-    @Step("Проверка на заполненность, при нажатии Сохранить")
+  //  @Step("Проверка на заполненность, при нажатии Сохранить")
     public CreateKomPage saveBut(){
         button.click();
+        waitVisibilityOfElement(message);
+        Assertions.assertEquals("Список командируемых сотрудников не может быть пустым",message.getText(),"Сообщение " +
+                "'Список командируемых сотрудников не может быть пустым' не появилось");
+        return this;
+    }
+    public CreateKomPage alert(){
         waitVisibilityOfElement(message);
         Assertions.assertEquals("Список командируемых сотрудников не может быть пустым",message.getText(),"Сообщение " +
                 "'Список командируемых сотрудников не может быть пустым' не появилось");

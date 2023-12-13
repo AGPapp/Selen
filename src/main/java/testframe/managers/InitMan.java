@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public class InitMan {
 
-    private static final DriverMan driverManager = DriverMan.getDriverManager();
+    public static final DriverMan driverManager = DriverMan.getDriverManager();
 
     public static void initFramework() {
         driverManager.getDriver().manage().window().maximize();
@@ -12,9 +12,9 @@ public class InitMan {
         driverManager.getDriver().manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
     }
 
-
-    public static void quitChrom() {
-        driverManager.quitDriver();
-    }
+//
+//    public static void quitChrom() {
+//        driverManager.quitDriver();
+//    }
 }
 

@@ -25,7 +25,7 @@
 //
 //    @BeforeEach
 //    public void beforeTest() {
-//        System.setProperty("webdriver.chrome.driver", "src/java/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/java/resources/hromedriver.exe");
 //        driver = new ChromeDriver();
 //        wait = new WebDriverWait(driver, 10, 1000);
 //        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
